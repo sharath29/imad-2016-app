@@ -6,6 +6,9 @@ var app = express();
 app.use(morgan('combined'));
 
 var article={
+    num_1:'first',
+    num_2:'second',
+    num_3:'third',
     title_one:'Article one | sharath savasere',
     title_two:'Article two | sharath savasere',
     title_three:'Article three | sharath savasere',
@@ -14,13 +17,13 @@ var article={
     heading_three:'Article three',
     date:'Sep 22 2016',
     content:`<p>
-                this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
+                this is the content of my ${num_1} article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
             </p>
             <p>
-                this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
+                this is the content of my ${num_1} article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
             </p>
             <p>
-                this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
+                this is the content of my ${num_1} article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
             </p>` 
 };
 function createTemplate_1(data){
@@ -55,20 +58,86 @@ var htmlTemplate=`
 </html>`;
 return htmlTemplate;
 }
+function createTemplate_2(data){
+var title=data.title_two;
+var date=data.date;
+var heading=data.heading_two;
+var content=data.content;
+var htmlTemplate=`
+
+<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
+    <link href="/ui/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+            ${date}
+        </div>
+        <div>
+            ${content}
+        </div>
+    </body>
+</html>`;
+return htmlTemplate;
+}
+function createTemplate_1(data){
+var title=data.title_three;
+var date=data.date;
+var heading=data.heading_three;
+var content=data.content;
+var htmlTemplate=`
+
+<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <meta name="viewpoint" content="width=device-width, initial-scale=1"/>
+    <link href="/ui/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div>
+            <a href="/">Home</a>
+        </div>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+            ${date}
+        </div>
+        <div>
+            ${content}
+        </div>
+    </body>
+</html>`;
+return htmlTemplate;
+}
 
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+
 app.get('/article-one', function (req, res) {
-    res.send(createTemplate(article_one));
+    res.send(createTemplate_1(article));
 });
 app.get('/article-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
+    res.send(createTemplate_2(article));
 });
 app.get('/article-three', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
+    res.send(createTemplate_3(article));
 });
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
