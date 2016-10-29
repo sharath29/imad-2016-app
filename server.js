@@ -6,15 +6,11 @@ var app = express();
 app.use(morgan('combined'));
 
 var article={
-    num_1:'first',
-    num_2:'second',
-    num_3:'third',
     title_one:'Article one | sharath savasere',
-    title_two:'Article two | sharath savasere',
-    title_three:'Article three | sharath savasere',
+    
     heading_one:'Article one',
-    heading_two:'Article two',
-    heading_three:'Article three',
+    
+    
     date:'Sep 22 2016',
     content:`<p>
                 this is the content of my ${num_1} article and i am working hard on it.this is the content of my first article and i am working hard on it.this is the content of my first article and i am working hard on it.
